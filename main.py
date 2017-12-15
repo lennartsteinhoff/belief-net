@@ -5,7 +5,7 @@
 
 from neural_net import NeuralNet
 
-from numpy import array, exp, random, dot
+import numpy as np
 
 
 def sigmoid(x):
@@ -16,11 +16,11 @@ def sigmoid_derivate(x):
     return sigmoid(x) * (1-sigmoid(x))
 
 
-x = array(([2, 9], [1, 5], [3, 6], [4, 4]), dtype=float)
-t = array(([0.92], [0.86], [0.89], [0.90]))
+x = np.array(([2, 9], [1, 5], [3, 6], [4, 4], [5, 3], [4, 4.1]), dtype=float)
+t = np.array(([0.92], [0.86], [0.89], [0.90], [0.93], [0.95]))
 
-W1 = random.randn(3, 2)
-W2 = random.randn(1, 3)
+W1 = np.random.randn(3, 2)
+W2 = np.random.randn(1, 3)
 
 a1 = W1.dot(x.T)
 z1 = sigmoid(a1)

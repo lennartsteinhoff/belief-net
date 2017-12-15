@@ -9,7 +9,7 @@ def sigmoid_derivate(x):
     return sigmoid(x) * (1-sigmoid(x))
 
 
-class NeuralNet(object):
+class NeuralNet:
 
     def __init__(self):
         self.input_size = 2
@@ -35,12 +35,11 @@ class NeuralNet(object):
         self.y_error = (t - y).T
         self.y_delta = self.y_error * sigmoid_derivate(y.T)
 
-        self.W2 += self.z1.dot(self.y_delta.T).T
-
         # self.h1_error = self.o_delta.dot(self.W2.T)
         self.z1_error = self.W2.T.dot(self.y_error)
         self.z1_delta = self.z1_error * sigmoid_derivate(self.z1)
 
+        self.W2 += 0.001 * self.z1.dot(self.y_delta.T).T
         self.W1 += x.T.dot(self.z1_delta.T).T
 
 
@@ -51,3 +50,5 @@ class NeuralNet(object):
 
 
 
+for count in range(10000):
+    neural_net.train(x_simple, t_simple)
